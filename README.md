@@ -6,16 +6,21 @@ ONE-SHOT Algebraic Effects Library for Ruby!
 ```ruby
 require "ruff"
 
-eff = init
+double = init
+log = init
 
-h = Handler.new
-    .on(eff, ->(k, v) {
-      k[v * 4]
+h = handler
+    .on(double, ->(k, v) {
+      k[v * 2]
+    })
+    .on(log, ->(k, v) {
+      puts "logger: #{v}"
+      k[]
     })
 
-puts h.run {
-  v = eff.perform 10
-  v + 2
+h.run {
+  v = double.perform 10
+  log.perform v + 2
 }
-# ==> 42
+# ==> prints "logger: 42"
 ```
