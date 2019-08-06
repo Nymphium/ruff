@@ -4,23 +4,28 @@ ruff
 ONE-SHOT Algebraic Effects Library for Ruby!
 
 ```ruby
-require "ruff"
+require 'ruff'
 
-double = init
-log = init
+double = Ruff.instance
+log = Ruff.instance
 
-h = handler
-    .on(double, ->(k, v) {
-      k[v * 2]
-    })
-    .on(log, ->(k, v) {
-      puts "logger: #{v}"
-      k[]
-    })
+h1 = Ruff.handler.on(double, ->(k, v){
+  k[v * 2]
+})
 
-h.run {
-  v = double.perform 10
-  log.perform v + 2
+h2 = Ruff.handler.on(log, ->(k, msg){
+  k[]
+  puts "logger: #{msg}"
+})
+
+h1.run{
+  h2.run{
+    v = double.perform 2
+    log.perform (v + 2)
+    puts "ok"
+  }
 }
-# ==> prints "logger: 42"
+# ==> prints
+# ok
+# logger: 6
 ```
