@@ -4,7 +4,7 @@ module Ruff
       @handlers = Hash.new
     end
 
-    def on(eff, prc)
+    def on(eff, &prc)
       @handlers[eff.id] = prc
 
       self
@@ -44,9 +44,11 @@ module Ruff
         }
 
         ->(*args) {
-          newh.run {
-            k[*args]
-          }
+          continue[
+            newh.run {
+              k[*args]
+            }
+          ]
         }
       }
 
