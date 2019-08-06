@@ -1,10 +1,4 @@
-ruff
-==
-
-ONE-SHOT Algebraic Effects Library for Ruby!
-
-```ruby
-require 'ruff'
+require "./ruff"
 
 double = Ruff::Effect.new
 log = Ruff::Effect.new
@@ -25,7 +19,3 @@ h1.run{
     puts "ok"
   }
 }
-# ==> prints
-# ok
-# logger: 6
-```
