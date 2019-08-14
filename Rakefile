@@ -16,4 +16,15 @@ YARD::Rake::YardocTask.new {|doc|
   doc.files = FileList.new "lib/**/*.rb"
 }
 
+desc "new version"
+task(:newver, [:major, :minor, :patch]){|_, args|
+  File.open('version.h', 'r+'){|f|
+    f.write <<-EOL
+#define RUFF_VERSION "#{args.to_a.join "."}"
+    EOL
+  }
+
+  sh "cpp -P lib/ruff/version.cpp.rb > lib/ruff/version.rb"
+}
+
 task :default => :spec
