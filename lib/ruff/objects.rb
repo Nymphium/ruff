@@ -1,6 +1,6 @@
 module Ruff
   module Throws
-    # _Eff_ is internal object.
+    # `Eff` is internal object.
     #
     # They make effects encapsulate with ID and arguments to be sent to the handler.
     class Eff
@@ -11,7 +11,7 @@ module Ruff
       # passes to a handler which can catch the effect.
       attr_reader :args
 
-      # creates a new object with _id_ and _args_.
+      # creates a new object with `id` and `args`.
       def initialize(id, args)
         @id = id; @args = args
       end
@@ -19,18 +19,18 @@ module Ruff
   end
 
   module Throws
-    # _Resend_ is internal object like _Eff_.
+    # `Resend` is internal object like `Eff`.
     #
     # It is used when an effect is unable to be handled and should be thrown to the outer handler.
     class Resend
 
-      #is abstracted effect (such as _Eff_ or (re)thrown _Resend_).
+      #is abstracted effect (such as `Eff` or (re)thrown `Resend`).
       attr_reader :eff
 
-      # is a continuation of _eff_ thrown context.
+      # is a continuation of `eff` thrown context.
       attr_reader :k
 
-      # creates a new object with _eff_ and _k_.
+      # creates a new object with `eff` and `k`.
       def initialize(eff, k)
         @eff = eff; @k = k
       end

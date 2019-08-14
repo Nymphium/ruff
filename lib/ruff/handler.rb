@@ -1,21 +1,25 @@
 module Ruff
-
   # In algebraic effects, handler is an first-class object.
   class Handler
-
-    # makes a new handler internally generating empty hash.
+    # makes a new handler, internally having fresh empty hash.
     # This is a effect-handler store and when handliong it is looked up.
-    # Example
+    # @example
     #   handler = Handler.new
     def initialize
       @handlers = Hash.new
     end
 
-    # sets effec handler _prc_ for _eff_
+    # sets effec handler `&prc` for `eff`
     #
-    # Last argument of _prc_ is *continuation*, proc object
-    # to go back to the handled computation.
-    # Example
+    # @param [Effect<Arg, Ret>] eff
+    #   the effect instance to be handled
+    # @param [Proc<Arg, Ret => A>] prc
+    #   a handler to handle `eff`;
+    #   last argument of `&prc` is *continuation*, proc object
+    #   to go back to the handled computation.
+    # @return [Handler{Effect<Arg, Ret>, e}] itself updated with handling `Effect<Arg, Ret>`
+    #
+    # @example
     #   handler.on(Log) {|msg, k|
     #     puts "Logger: #{msg}"
     #     k[]
@@ -26,14 +30,17 @@ module Ruff
       self
     end
 
+    # @param [Proc<(), T>]
+    # @return [T]
+    #
     # handles the computation.
-    # Example
+    #
+    # @example
     #   handler.run {
     #     Log.perform "hello"
     #   }
     #
-    # _handler_ can be layered.
-    # Example
+    # @example `handler` can be layered.
     #   handler.run {
     #     Handler.new
     #       .on(Double){|v, k|

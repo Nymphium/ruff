@@ -6,15 +6,19 @@ require 'securerandom'
 
 module Ruff
   class << self
-    # is alias for _Effect.new_
-    # Example
-    #   Log = Ruff.instance
+    # is alias for `Effect.new`
+    # @see Effect.initialize Effect.initialize
+    #
+    # @example
+    #   Log = Ruff.instance # === Ruff::Effect.new
     def instance
       Effect.new
     end
 
-    # is alias for _Handler.new_
-    # Example
+    # is alias for `Handler.new`
+    # @see Handler.initialize Handler.initialize
+    #
+    # @example
     #   log_handler = Ruff.handler.on(Log){|msg, k|
     #     puts "Logger: #{msg}"
     #     k[]
