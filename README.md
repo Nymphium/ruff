@@ -30,3 +30,9 @@ h1.run{
 # 9
 # logger: 6
 ```
+
+# Documentation
+See [here](https://nymphium.github.io/ruff/).
+
+# LICENSE
+MIT
