@@ -7,6 +7,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     rake (10.5.0)
+    rdoc (6.1.1)
 
 PLATFORMS
   ruby
@@ -14,6 +15,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   rake (~> 10.0)
+  rdoc
   ruff!
 
 BUNDLED WITH
