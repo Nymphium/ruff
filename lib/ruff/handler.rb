@@ -15,12 +15,12 @@ module Ruff
     #   the effect instance to be handled
     # @param [Proc<Arg, Ret => A>] prc
     #   a handler to handle `eff`;
-    #   last argument of `&prc` is *continuation*, proc object
+    #   First argument of `&prc` is *continuation*, proc object
     #   to go back to the handled computation.
     # @return [Handler{Effect<Arg, Ret>, e}] itself updated with handling `Effect<Arg, Ret>`
     #
     # @example
-    #   handler.on(Log) {|msg, k|
+    #   handler.on(Log) {|k, msg|
     #     puts "Logger: #{msg}"
     #     k[]
     #   }
@@ -30,7 +30,7 @@ module Ruff
       self
     end
 
-    # @param [Proc<(), T>]
+    # @param [Proc<(), T>] prc
     # @return [T]
     #
     # handles the computation.
@@ -43,7 +43,7 @@ module Ruff
     # @example `handler` can be layered.
     #   handler.run {
     #     Handler.new
-    #       .on(Double){|v, k|
+    #       .on(Double){|k, v|
     #         k[v * v]
     #       }.run {
     #         v = Double.perform 3

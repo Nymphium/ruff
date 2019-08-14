@@ -279,7 +279,7 @@ This is a effect-handler store and when handliong it is looked up.</p>
     <p class="tag_title">Examples:</p>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Log</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
+      <pre class="example code"><code><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Log</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='op'>|</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Logger: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
 <span class='rbrace'>}</span></code></pre>
@@ -314,7 +314,7 @@ This is a effect-handler store and when handliong it is looked up.</p>
       
         &mdash;
         <div class='inline'><p>a handler to handle <code>eff</code>;
-last argument of <code>&amp;prc</code> is <em>continuation</em>, proc object
+First argument of <code>&amp;prc</code> is <em>continuation</em>, proc object
 to go back to the handled computation.</p>
 </div>
       
@@ -397,7 +397,7 @@ to go back to the handled computation.</p>
       
       <pre class="example code"><code><span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='lbrace'>{</span>
   <span class='const'><span class='object_link'><a href="" title="Ruff::Handler (class)">Handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Ruff::Handler#initialize (method)">new</a></span></span>
-    <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Double</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
+    <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Double</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
       <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span> <span class='op'>*</span> <span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
     <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='lbrace'>{</span>
       <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='const'>Double</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='int'>3</span>
@@ -411,7 +411,7 @@ to go back to the handled computation.</p>
   
     <li>
       
-        <span class='name'></span>
+        <span class='name'>prc</span>
       
       
         <span class='type'>(<tt>Proc&lt;(), T&gt;</tt>)</span>
@@ -560,7 +560,7 @@ to go back to the handled computation.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Aug 14 23:17:10 2019 by
+  Generated on Thu Aug 15 00:52:28 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.3).
 </div>
