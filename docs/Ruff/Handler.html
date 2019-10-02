@@ -6,7 +6,7 @@
 <title>
   Class: Ruff::Handler
   
-    &mdash; Ruff 0.0.5 Documentation
+    &mdash; Ruff 0.0.6 Documentation
   
 </title>
 
@@ -87,6 +87,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></dd>
+  </dl>
+  
   
 
   
@@ -99,17 +104,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    <p>In algebraic effects, handler is an first-class object.</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -143,7 +138,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>makes a new handler, internally having fresh empty hash.</p>
+    <span class="summary_desc"><div class='inline'><p>In algebraic effects, handler is an first-class object.</p>
 </div></span>
   
 </li>
@@ -198,7 +193,13 @@
     </ul>
   
 
-<div id="constructor_details" class="method_details_list">
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
@@ -212,7 +213,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>makes a new handler, internally having fresh empty hash.
+    <p>In algebraic effects, handler is an first-class object.
+makes a new handler, internally having fresh empty hash.
 This is a effect-handler store and when handliong it is looked up.</p>
 
 
@@ -504,17 +506,17 @@ to go back to the handled computation.</p>
   <span class='id identifier rubyid_rehandles'>rehandles</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
   <span class='id identifier rubyid_handle'>handle</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span> <span class='tlambeg'>{</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span>
       <span class='kw'>if</span> <span class='id identifier rubyid_effh'>effh</span> <span class='op'>=</span> <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_effh'>effh</span><span class='lbracket'>[</span><span class='id identifier rubyid_continue'>continue</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span>
       <span class='kw'>else</span>
-        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_continue'>continue</span><span class='rparen'>)</span>
+        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_continue'>continue</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span>
       <span class='kw'>if</span> <span class='id identifier rubyid_effh'>effh</span> <span class='op'>=</span> <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_effh'>effh</span><span class='lbracket'>[</span><span class='id identifier rubyid_rehandles'>rehandles</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span>
       <span class='kw'>else</span>
-        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_rehandles'>rehandles</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_rehandles'>rehandles</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_r'>r</span>
@@ -560,9 +562,9 @@ to go back to the handled computation.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Aug 15 00:52:28 2019 by
+  Generated on Wed Oct  2 22:42:03 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.6.3).
+  0.9.20 (ruby-2.6.4).
 </div>
 
     </div>
