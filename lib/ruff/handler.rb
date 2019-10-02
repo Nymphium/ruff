@@ -4,8 +4,6 @@ require 'securerandom'
 class Ruff::Handler
   include Ruff::Throws
 
-  @valh_id = SecureRandom.uuid
-
   # makes a new handler, internally having fresh empty hash.
   #
   # This is a effect-handler store and when handliong it is looked up.
@@ -16,6 +14,7 @@ class Ruff::Handler
 
   def initialize
     @handlers = Hash.new
+    @valh_id = SecureRandom.uuid
     @handlers[@valh_id] = ->(x) { x }
   end
 
@@ -115,13 +114,16 @@ class Ruff::Handler
         if effh = @handlers[r.id]
           effh[continue, *r.args]
         else
-          Fiber.yield (Resend.new r, continue)
+          Fiber.yield Resend.new(r, continue)
         end
       elsif r.is_a? Resend
-        if effh = @handlers[r.eff.id]
-          effh[rehandles[r.k], *r.eff.args]
+        eff = r.eff
+        next_k = rehandles.(r.k)
+
+        if effh = @handlers[eff.id]
+          effh.(next_k, *eff.args)
         else
-          Fiber.yield (Resend.new r, rehandles[r.k])
+          Fiber.yield Resend.new(eff, next_k)
         end
       else
         @handlers[@valh_id].(r)
@@ -145,16 +147,16 @@ class Ruff::Handler
       ->(*args) {
         continue[
           newh.run {
-            k[*args]
+            k.(*args)
           }
         ]
       }
     }
 
     continue = ->(*arg) {
-      handle[co.resume(*arg)]
+      handle.(co.resume(*arg))
     }
 
-    continue[nil]
+    continue.(nil)
   end
 end

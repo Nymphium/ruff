@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Ruff 0.0.6 Documentation
+    &mdash; Ruff 0.0.8 Documentation
   
 </title>
 
@@ -90,9 +90,71 @@
 </span><span class='comment'># logger: 6
 </span></code></pre>
 
-<h1>Documentation</h1>
+<h1>pre-defined effect and handlers</h1>
 
-<p>See <a href="https://nymphium.github.io/ruff/">here</a>.</p>
+<p>They have <code>with</code> method to handle the effects, and <code>Instance</code> class to instanciate and handle the indivisual effect objects.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruff</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruff/standard</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Ruff/Standard.html" title="Ruff::Standard (module)">Standard</a></span></span>
+
+<span class='const'>Defer</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span> <span class='lbrace'>{</span>
+  <span class='id identifier rubyid_state1'>state1</span> <span class='op'>=</span> <span class='const'>State</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_state2'>state2</span> <span class='op'>=</span> <span class='const'>State</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='int'>10</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+    <span class='const'>CurrentTime</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span> <span class='lbrace'>{</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='const'>CurrentTime</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
+    <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+      <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span><span class='lbrace'>{</span>
+        <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>+</span> <span class='int'>1</span> <span class='rbrace'>}</span>
+        <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span>
+
+        <span class='id identifier rubyid_s1'>s1</span> <span class='op'>=</span> <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
+        <span class='id identifier rubyid_s2'>s2</span> <span class='op'>=</span> <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
+
+        <span class='const'>Defer</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span> <span class='lbrace'>{</span>
+          <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_s1'>s1</span><span class='comma'>,</span> <span class='id identifier rubyid_s2'>s2</span>
+        <span class='rbrace'>}</span>
+      <span class='rbrace'>}</span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+<span class='rbrace'>}</span>
+
+<span class='comment'># ==&gt;
+</span><span class='comment'># 2019-10-03 03:24:34 +0900
+</span><span class='comment'># 13
+</span><span class='comment'># 13!
+</span><span class='comment'># 12
+</span><span class='comment'># 12!
+</span><span class='comment'># 11
+</span><span class='comment'># 11!
+</span></code></pre>
+
+<h2><code>Ruff::Standard::State</code></h2>
+
+<h3><code>with_init</code></h3>
+
+<!-- This method handles state-like effects like `with` , but it requires initial state. -->
+
+<!-- `with { task }` is short hand for `with_init(0) { task }` . -->
+
+<h3><code>get</code></h3>
+
+<h3><code>put</code></h3>
+
+<h3><code>modify</code></h3>
+
+<h2><code>Ruff::Standard::Defer</code></h2>
+
+<h3><code>register</code></h3>
+
+<h2><code>Ruff::Standard::CurrentTime</code></h2>
+
+<h3><code>get</code></h3>
 
 <h1>LICENSE</h1>
 
@@ -100,7 +162,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Thu Oct  3 00:38:48 2019 by
+  Generated on Thu Oct  3 03:25:52 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>
