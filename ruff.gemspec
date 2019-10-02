@@ -24,7 +24,6 @@ Gem::Specification.new{|spec|
   spec.add_development_dependency "rake", "~> 10.0"
 
   spec.metadata = {
-    "documentation_uri" => "https://nymphium.github.io/ruff",
-    "bug_tracker_uri" => "https://github/nymphium/ruff/issues"
+    "documentation_uri" => "https://nymphium.github.io/ruff"
   }
 }
