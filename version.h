@@ -1,1 +1,1 @@
-#define RUFF_VERSION "0.0.8"
+#define RUFF_VERSION "1.0.0"
