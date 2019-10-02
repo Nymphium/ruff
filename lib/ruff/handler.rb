@@ -1,39 +1,93 @@
+require 'securerandom'
+
+# In algebraic effects, handler is an first-class object.
 class Ruff::Handler
   include Ruff::Throws
-  # In algebraic effects, handler is an first-class object.
+
+  @valh_id = SecureRandom.uuid
+
   # makes a new handler, internally having fresh empty hash.
+  #
   # This is a effect-handler store and when handliong it is looked up.
+  # Value handler is set `id` function to by default.
+  #
   # @example
   #   handler = Handler.new
+
   def initialize
     @handlers = Hash.new
+    @handlers[@valh_id] = ->(x) { x }
   end
 
-  # sets effec handler `&prc` for `eff`
+
+  # sets value handler `&fun`.
+  #
+  # Value handler is the handler for *the result value of the computation*.
+  # For example, `Handler.new.to{|_x| 0}.run { value }` results in `0` .
+  #
+  # The value handler modifies the result of the call of continuation in effect handlers of the handler.
+  #
+  # @param [Proc<A, B>] fun
+  #   value handler
+  # @return [Handler<A!{e}, B!{e'}>]
+  #
+  # @example
+  #   logs = []
+  #   handler.on(Log) {|k, msg|
+  #     logs << msg
+  #     k[]
+  #   }.to {|x|
+  #    logs.each {|log|
+  #      puts "Logger: #{log}"
+  #    }
+  #
+  #     puts "returns #{x}"
+  #   }
+  #   .run {
+  #     Log.perform "hello"
+  #     Log.perform "world"
+  #     "!"
+  #   }
+  #
+  #   ## ==>
+  #   # msg>> hello
+  #   # msg>> world
+  #   # returns !
+
+  def to(&fun)
+    @handlers[@valh_id] = fun
+
+    self
+  end
+
+  # sets effec handler `&fun` for `eff`
   #
   # @param [Effect<Arg, Ret>] eff
   #   the effect instance to be handled
-  # @param [Proc<Arg, Ret => A>] prc
+  # @param [Proc<Arg, Ret => A>] fun
   #   a handler to handle `eff`;
-  #   First argument of `&prc` is *continuation*, proc object
+  #   First argument of `&fun` is *continuation*, proc object
   #   to go back to the handled computation.
-  # @return [Handler{Effect<Arg, Ret>, e}] itself updated with handling `Effect<Arg, Ret>`
+  # @return [Handler<A!{Effect<Arg, Ret>, e}, B!{e}>] itself updated with handling `Effect<Arg, Ret>`
   #
   # @example
   #   handler.on(Log) {|k, msg|
   #     puts "Logger: #{msg}"
   #     k[]
   #   }
-  def on(eff, &prc)
-    @handlers[eff.id] = prc
+
+  def on(eff, &fun)
+    @handlers[eff.id] = fun
 
     self
   end
 
-  # @param [Proc<(), T>] prc
-  # @return [T]
-  #
   # handles the computation.
+  #
+  # @param [Proc<(), A>] prc
+  #   a thunk to be handled and returns `A`
+  # @return [B]
+  #   a value modified by value handler `Proc<A, B>` , or returned from the effect handler throwing continuation away
   #
   # @example
   #   handler.run {
@@ -50,6 +104,7 @@ class Ruff::Handler
   #         Log.perform 3
   #     }
   #   }
+
   def run(&prc)
     co = Fiber.new &prc
     continue = nil
@@ -69,7 +124,7 @@ class Ruff::Handler
           Fiber.yield (Resend.new r, rehandles[r.k])
         end
       else
-        r
+        @handlers[@valh_id].(r)
       end
     }
 

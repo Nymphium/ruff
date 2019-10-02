@@ -1,6 +1,8 @@
 ruff
 ==
 
+[![Gem Version](https://badge.fury.io/rb/ruff.svg)](https://badge.fury.io/rb/ruff)
+
 ONE-SHOT Algebraic Effects Library for Ruby!
 
 ```ruby
@@ -30,9 +32,6 @@ h1.run{
 # 9
 # logger: 6
 ```
-
-# Documentation
-See [here](https://nymphium.github.io/ruff/).
 
 # LICENSE
 MIT
