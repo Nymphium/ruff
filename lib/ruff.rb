@@ -1,7 +1,9 @@
-require "ruff/version"
-require "ruff/objects"
-require "ruff/effect"
-require "ruff/handler"
+# frozen_string_literal: true
+
+require 'ruff/version'
+require 'ruff/objects'
+require 'ruff/effect'
+require 'ruff/handler'
 require 'securerandom'
 
 module Ruff

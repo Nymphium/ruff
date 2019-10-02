@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 
 # In algebraic effects, handler is an first-class object.
@@ -13,11 +15,9 @@ class Ruff::Handler
   #   handler = Handler.new
 
   def initialize
-    @handlers = Hash.new
-    @valh_id = SecureRandom.uuid
-    @handlers[@valh_id] = ->(x) { x }
+    @handlers = {}
+    @valh = ->(x) { x }
   end
-
 
   # sets value handler `&fun`.
   #
@@ -54,7 +54,7 @@ class Ruff::Handler
   #   # returns !
 
   def to(&fun)
-    @handlers[@valh_id] = fun
+    @valh = fun
 
     self
   end
@@ -109,54 +109,51 @@ class Ruff::Handler
     continue = nil
     rehandles = nil
 
-    handle = ->(r) {
-      if r.is_a? Eff
+    handle = lambda { |r|
+      case r
+      when Eff
         if effh = @handlers[r.id]
           effh[continue, *r.args]
         else
           Fiber.yield Resend.new(r, continue)
         end
-      elsif r.is_a? Resend
+      when Resend then
         eff = r.eff
-        next_k = rehandles.(r.k)
+        next_k = rehandles.call(r.k)
 
         if effh = @handlers[eff.id]
-          effh.(next_k, *eff.args)
+          effh.call(next_k, *eff.args)
         else
           Fiber.yield Resend.new(eff, next_k)
         end
       else
-        @handlers[@valh_id].(r)
+        @valh.call(r)
       end
     }
 
-    rehandles = ->(k){
+    rehandles = lambda { |k|
       newh = self.class.new
-      def newh.add_handler id, h
+      def newh.add_handler(id, h)
         @handlers[id] = h
       end
 
-      @handlers.each{|id, h|
+      @handlers.each do |id, h|
         newh.add_handler id, h
-      }
+      end
 
       class << newh
         undef add_handler
       end
 
-      ->(*args) {
-        continue[
-          newh.run {
-            k.(*args)
-          }
-        ]
+      lambda { |*args|
+        continue.call(newh.run { k.call(*args) })
       }
     }
 
-    continue = ->(*arg) {
-      handle.(co.resume(*arg))
+    continue = lambda { |*arg|
+      handle.call(co.resume(*arg))
     }
 
-    continue.(nil)
+    continue.call(nil)
   end
 end

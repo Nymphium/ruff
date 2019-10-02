@@ -1,30 +1,30 @@
-require "bundler/gem_tasks"
-require "yard"
-require "ruff/version"
+# frozen_string_literal: true
 
-YARD::Rake::YardocTask.new {|doc|
-  doc.name = "doc"
+require 'bundler/gem_tasks'
+require 'yard'
+# require 'ruff/version'
+
+YARD::Rake::YardocTask.new do |doc|
+  doc.name = 'doc'
 
   [
-    "--output-dir=docs",
+    '--output-dir=docs',
     "--title=Ruff #{Ruff::VERSION} Documentation",
-    "--markup-provider=redcarpet",
-    "--markup=markdown",
-    "--charset=utf-8"
-  ].each{|opt| doc.options << opt }
+    '--markup-provider=redcarpet',
+    '--markup=markdown',
+    '--charset=utf-8'
+  ].each { |opt| doc.options << opt }
 
-  doc.files = FileList.new "lib/**/*.rb"
-}
+  doc.files = FileList.new 'lib/**/*.rb'
+end
 
-desc "new version"
-task(:newver, [:major, :minor, :patch]){|_, args|
-  File.open('version.h', 'r+'){|f|
-    f.write <<-EOL
-#define RUFF_VERSION "#{args.to_a.join "."}"
-    EOL
-  }
+desc 'new version'
+task(:newver, %i[major minor patch]) do |_, args|
+  File.open('version', 'r+') do |f|
+    f.write args.to_a.join '.'
+  end
 
-  sh "cpp -P lib/ruff/version.cpp.rb > lib/ruff/version.rb"
-}
+  sh 'bash lib/ruff/version.gen.sh > lib/ruff/version.rb'
+end
 
-task :default => :spec
+task default: :spec

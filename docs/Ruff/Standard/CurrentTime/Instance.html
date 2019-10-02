@@ -214,12 +214,12 @@
       <pre class="lines">
 
 
-3
-4
-5</pre>
+5
+6
+7</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@eff</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="../../../Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
@@ -251,12 +251,12 @@
       <pre class="lines">
 
 
-7
-8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
@@ -281,15 +281,15 @@
       <pre class="lines">
 
 
-11
-12
-13</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/current_time.rb', line 13</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span>
-  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@eff</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@eff</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -301,7 +301,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 03:27:27 2019 by
+  Generated on Thu Oct  3 05:05:04 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

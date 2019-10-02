@@ -244,13 +244,13 @@
       <pre class="lines">
 
 
-10
-11
 12
-13</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@id</span> <span class='op'>=</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_uuid'>uuid</span>
@@ -293,12 +293,12 @@
       <pre class="lines">
 
 
-4
-5
-6</pre>
+6
+7
+8</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -384,15 +384,15 @@
       <pre class="lines">
 
 
-20
-21
-22</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform'>perform</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Eff.html#initialize-instance_method" title="Ruff::Throws::Eff#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@id</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+  <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Eff.html#initialize-instance_method" title="Ruff::Throws::Eff#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@id</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -404,7 +404,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 03:27:26 2019 by
+  Generated on Thu Oct  3 05:05:04 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

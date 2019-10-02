@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class provides an effect instance.
 class Ruff::Effect
   # Each instance must be unique so they have unique id with UUID
@@ -18,6 +20,6 @@ class Ruff::Effect
   # @example
   #   Log.perform "hello"
   def perform(*a)
-    return Fiber.yield Ruff::Throws::Eff.new(@id, a)
+    Fiber.yield Ruff::Throws::Eff.new(@id, a)
   end
 end

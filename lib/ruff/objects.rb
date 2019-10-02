@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ruff::Throws end
 
 # `Eff` is internal object.
@@ -20,7 +22,7 @@ end
 #
 # It is used when an effect is unable to be handled and should be thrown to the outer handler.
 class Ruff::Throws::Resend
-  #is abstracted effect (such as `Eff` or (re)thrown `Resend`).
+  # is abstracted effect (such as `Eff` or (re)thrown `Resend`).
   attr_reader :eff
 
   # is a continuation of `eff` thrown context.

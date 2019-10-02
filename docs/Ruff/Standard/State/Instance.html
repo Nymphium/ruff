@@ -280,13 +280,13 @@
       <pre class="lines">
 
 
-3
-4
 5
-6</pre>
+6
+7
+8</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@get</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="../../../Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
@@ -319,12 +319,12 @@
       <pre class="lines">
 
 
-8
-9
-10</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span>
   <span class='ivar'>@get</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
@@ -349,14 +349,14 @@
       <pre class="lines">
 
 
-12
-13
-14</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_modify'>modify</span> <span class='op'>&amp;</span><span class='id identifier rubyid_fn'>fn</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_modify'>modify</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_fn'>fn</span><span class='rparen'>)</span>
   <span class='ivar'>@modify</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='id identifier rubyid_fn'>fn</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -379,14 +379,14 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 18</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_put'>put</span> <span class='id identifier rubyid_s'>s</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='ivar'>@modify</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_s'>s</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -409,14 +409,14 @@
       <pre class="lines">
 
 
-34
-35
-36</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -439,8 +439,6 @@
       <pre class="lines">
 
 
-20
-21
 22
 23
 24
@@ -451,23 +449,25 @@
 29
 30
 31
-32</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_with_init'>with_init</span> <span class='id identifier rubyid_init'>init</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='id identifier rubyid_init'>init</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_state'>state</span> <span class='op'>=</span> <span class='id identifier rubyid_init'>init</span>
 
   <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
-    <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@modify</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_fn'>fn</span><span class='op'>|</span>
-      <span class='id identifier rubyid_state'>state</span> <span class='op'>=</span> <span class='id identifier rubyid_fn'>fn</span><span class='lbracket'>[</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
-      <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='rbracket'>]</span>
-    <span class='rbrace'>}</span>
-    <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@get</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
-      <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
-    <span class='rbrace'>}</span>
-    <span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span>
+      <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@modify</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_fn'>fn</span><span class='op'>|</span>
+    <span class='id identifier rubyid_state'>state</span> <span class='op'>=</span> <span class='id identifier rubyid_fn'>fn</span><span class='lbracket'>[</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+      <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@get</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
+    <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+      <span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='op'>&amp;</span><span class='id identifier rubyid_task'>task</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -479,7 +479,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 03:27:27 2019 by
+  Generated on Thu Oct  3 05:05:04 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

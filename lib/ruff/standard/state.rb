@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ruff::Standard::State
   class Instance
     def initialize
@@ -9,29 +11,29 @@ module Ruff::Standard::State
       @get.perform
     end
 
-    def modify &fn
+    def modify(&fn)
       @modify.perform fn
     end
 
-    def put s
+    def put(s)
       @modify.perform ->(_) { s }
     end
 
-    def with_init init, &task
+    def with_init(init, &task)
       state = init
 
       Ruff.handler
-        .on(@modify){|k, fn|
-          state = fn[state]
-          k[nil]
-        }
-        .on(@get){|k|
-          k[state]
-        }
-        .run &task
+          .on(@modify) do |k, fn|
+        state = fn[state]
+        k[nil]
+      end
+          .on(@get) do |k|
+        k[state]
+      end
+          .run &task
     end
 
-    def with &task
+    def with(&task)
       with_init(nil, &task)
     end
   end
@@ -43,22 +45,21 @@ module Ruff::Standard::State
     @inst.get
   end
 
-  def modify &fn
+  def modify(&fn)
     @inst.modify &fn
   end
 
-  def put s
+  def put(s)
     @inst.put s
   end
 
-  def with_init init, &task
+  def with_init(init, &task)
     @inst.with_init init, &task
   end
 
-  def with &task
+  def with(&task)
     @inst.with &task
   end
 
   module_function :get, :put, :modify, :with, :with_init
 end
-

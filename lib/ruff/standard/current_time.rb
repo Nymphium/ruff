@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ruff::Standard::CurrentTime
   class Instance
     def initialize
@@ -8,8 +10,8 @@ module Ruff::Standard::CurrentTime
       @eff.perform
     end
 
-    def with &th
-      Ruff.handler.on(@eff){|k| k[Time.now]}.run &th
+    def with(&th)
+      Ruff.handler.on(@eff) { |k| k[Time.now] }.run &th
     end
   end
 
@@ -20,10 +22,9 @@ module Ruff::Standard::CurrentTime
     @inst.get
   end
 
-  def with &th
+  def with(&th)
     @inst.with &th
   end
 
   module_function :get, :with
 end
-

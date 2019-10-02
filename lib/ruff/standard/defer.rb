@@ -1,38 +1,38 @@
+# frozen_string_literal: true
+
 module Ruff::Standard::Defer
   class Instance
     def initialize
       @eff = Ruff.instance
     end
 
-    def register &prc
+    def register(&prc)
       @eff.perform prc
     end
 
-    def with &th
+    def with(&th)
       procs = []
 
       Ruff.handler
-        .on(@eff){|k, prc|
-          procs << prc
-          k[]
-        }
-        .to {|_|
-          procs.reverse_each{|prc|
-            prc[]
-          }
-        }
-        .run &th
+          .on(@eff) do |k, prc|
+        procs << prc
+        k[]
+      end
+          .to do |_|
+        procs.reverse_each(&:[])
+      end
+          .run &th
     end
   end
 
   # ---
   @inst = Instance.new
 
-  def register &prc
+  def register(&prc)
     @inst.register &prc
   end
 
-  def with &th
+  def with(&th)
     @inst.with &th
   end
 
