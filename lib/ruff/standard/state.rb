@@ -7,6 +7,22 @@ require 'ostruct'
 #
 # The module has an instance of `Instance` and provides its methods as module method.
 # @see Standard::State::Instance
+# @example
+#   r = State.with {
+#     State.put 10
+#     puts State.get #==> 10
+#     State.modify {|s| s + 20}
+#     State.modify {|s|
+#       puts s #==> 30
+#       0
+#     }
+#  
+#     puts State.get #==> 0
+#  
+#     State.put 11
+#   }
+#  
+#   puts r #==> 11
 module Ruff::Standard::State
   class Instance
     # makes new instances.
@@ -57,6 +73,7 @@ module Ruff::Standard::State
       # just using mutable assignment
       state = init
 
+      # The handler *closes* `state` variable so it should be created every time.
       Ruff.handler
           .on(@eff.modify) do |k, fn|
         state = fn[state]

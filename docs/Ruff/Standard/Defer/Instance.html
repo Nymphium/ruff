@@ -6,7 +6,7 @@
 <title>
   Class: Ruff::Standard::Defer::Instance
   
-    &mdash; Ruff 1.0.1 Documentation
+    &mdash; Ruff 1.1.0 Documentation
   
 </title>
 
@@ -296,12 +296,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eff'>eff</span>
   <span class='ivar'>@eff</span>
@@ -467,7 +467,10 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
 43
 44
 45
-46</pre>
+46
+47
+48
+49</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 32</span>
@@ -476,14 +479,17 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
   <span class='comment'># This is a stack to store deferred procedures.
 </span>  <span class='id identifier rubyid_procs'>procs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
-  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
+  <span class='comment'># The handler *closes* `procs` variable so it should be created every time.
+</span>  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
       <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@eff</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_prc'>prc</span><span class='op'>|</span>
     <span class='id identifier rubyid_procs'>procs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_prc'>prc</span>
     <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
-      <span class='period'>.</span><span class='id identifier rubyid_to'>to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='op'>|</span>
+      <span class='period'>.</span><span class='id identifier rubyid_to'>to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
     <span class='comment'># Like Go&#39;s defer functions, it crashes the thunk by reversed order.
 </span>    <span class='id identifier rubyid_procs'>procs</span><span class='period'>.</span><span class='id identifier rubyid_reverse_each'>reverse_each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:[]</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_v'>v</span>
   <span class='kw'>end</span>
       <span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -497,9 +503,9 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Oct  4 13:57:07 2019 by
+  Generated on Fri Oct  4 21:12:21 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.6.4).
+  0.9.20 (ruby-2.6.5).
 </div>
 
     </div>

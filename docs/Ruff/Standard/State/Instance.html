@@ -6,7 +6,7 @@
 <title>
   Class: Ruff::Standard::State::Instance
   
-    &mdash; Ruff 1.0.1 Documentation
+    &mdash; Ruff 1.1.0 Documentation
   
 </title>
 
@@ -318,16 +318,16 @@
       <pre class="lines">
 
 
-13
-14
-15
-16
-17
-18
-19</pre>
+29
+30
+31
+32
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='id identifier rubyid_get'>get</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="../../../Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
@@ -374,12 +374,12 @@ with accessing <code>#eff.get</code> and <code>#eff.modify</code> .</p>
       <pre class="lines">
 
 
-84
-85
-86</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eff'>eff</span>
   <span class='ivar'>@eff</span>
@@ -438,12 +438,12 @@ with accessing <code>#eff.get</code> and <code>#eff.modify</code> .</p>
       <pre class="lines">
 
 
-24
-25
-26</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
@@ -511,12 +511,12 @@ This function has an argument receiving the state.</p>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_modify'>modify</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_fn'>fn</span><span class='rparen'>)</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='id identifier rubyid_fn'>fn</span>
@@ -583,12 +583,12 @@ This function has an argument receiving the state.</p>
       <pre class="lines">
 
 
-41
-42
-43</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_s'>s</span> <span class='rbrace'>}</span>
@@ -661,12 +661,12 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
       <pre class="lines">
 
 
-78
-79
-80</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
@@ -754,30 +754,32 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
       <pre class="lines">
 
 
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68</pre>
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/state.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='id identifier rubyid_init'>init</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
   <span class='comment'># not a parameter passing style, or so-called *pure* implementation,
 </span>  <span class='comment'># just using mutable assignment
 </span>  <span class='id identifier rubyid_state'>state</span> <span class='op'>=</span> <span class='id identifier rubyid_init'>init</span>
 
-  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
+  <span class='comment'># The handler *closes* `state` variable so it should be created every time.
+</span>  <span class='const'><span class='object_link'><a href="../../../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="../../../Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
       <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_fn'>fn</span><span class='op'>|</span>
     <span class='id identifier rubyid_state'>state</span> <span class='op'>=</span> <span class='id identifier rubyid_fn'>fn</span><span class='lbracket'>[</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='rbracket'>]</span>
@@ -796,9 +798,9 @@ But it still has the possibility to invoke effects(<code>e</code>).</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Oct  4 13:57:07 2019 by
+  Generated on Fri Oct  4 21:12:21 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.6.4).
+  0.9.20 (ruby-2.6.5).
 </div>
 
     </div>

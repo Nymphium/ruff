@@ -9,6 +9,7 @@ module Ruff::Standard::CurrentTime
     # makes a new instance.
     def initialize
       @eff = Ruff.instance
+      @handler = Ruff.handler.on(@eff) { |k| k[Time.now] }
     end
 
     # is a smart method to invoke the effect operation.
@@ -21,7 +22,7 @@ module Ruff::Standard::CurrentTime
     # is a handler to interpret the effect invokation as requesting the current time.
     # This handler receives the *request* and returns current time.
     #
-    # @param [Proc<(), A>!{CurrentTime.eff, e}] th
+    # @param [Proc<(), A!{CurrentTime.eff, e}>] th
     #  is a thunk returning `A` with the possibility to invoke effects,
     #  including `CurrentTime.eff` .
     #
@@ -29,7 +30,7 @@ module Ruff::Standard::CurrentTime
     #   returns `A` , without modification by value handler.
     #   But it still has the possibility to invoke effects(`e`).
     def with(&th)
-      Ruff.handler.on(@eff) { |k| k[Time.now] }.run(&th)
+        @handler.run(&th)
     end
 
     # You can reimplement the handler using this effect instance.

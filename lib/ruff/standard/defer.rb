@@ -33,14 +33,17 @@ module Ruff::Standard::Defer
       # This is a stack to store deferred procedures.
       procs = []
 
+      # The handler *closes* `procs` variable so it should be created every time.
       Ruff.handler
           .on(@eff) do |k, prc|
         procs << prc
         k[]
       end
-          .to do |_|
+          .to do |v|
         # Like Go's defer functions, it crashes the thunk by reversed order.
         procs.reverse_each(&:[])
+
+        v
       end
           .run(&th)
     end

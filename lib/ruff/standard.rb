@@ -18,6 +18,8 @@
 #
 module Ruff::Standard end
 
+require 'ruff'
 require 'ruff/standard/current_time'
+require 'ruff/standard/measure_time'
 require 'ruff/standard/defer'
 require 'ruff/standard/state'

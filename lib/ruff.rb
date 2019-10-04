@@ -12,7 +12,7 @@ module Ruff
     # @see Effect.initialize Effect.initialize
     #
     # @example
-    #   Log = Ruff.instance # === Ruff::Effect.new
+    #   Log = Ruff.instance #==> Ruff::Effect.new
     def instance
       Effect.new
     end

@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'bundler/gem_tasks'
+require 'rubocop/rake_task'
 require 'yard'
 # require 'ruff/version'
+
+RuboCop::RakeTask.new
 
 YARD::Rake::YardocTask.new do |doc|
   doc.name = 'doc'
