@@ -6,7 +6,7 @@
 <title>
   Class: Ruff::Handler
   
-    &mdash; Ruff 1.0.0 Documentation
+    &mdash; Ruff 1.0.1 Documentation
   
 </title>
 
@@ -128,6 +128,28 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#handlers=-instance_method" title="#handlers= (instance method)">#<strong>handlers=</strong>(handlers)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -271,13 +293,13 @@ Value handler is set <code>id</code> function to by default.</p>
       <pre class="lines">
 
 
+16
 17
 18
-19
-20</pre>
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -296,7 +318,37 @@ Value handler is set <code>id</code> function to by default.</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="on-instance_method">
+  <h3 class="signature first" id="handlers=-instance_method">
+  
+    #<strong>handlers=</strong>(handlers)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_handlers='>handlers=</span><span class='lparen'>(</span><span class='id identifier rubyid_handlers'>handlers</span><span class='rparen'>)</span>
+  <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='id identifier rubyid_handlers'>handlers</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on-instance_method">
   
     #<strong>on</strong>(eff, &amp;fun)  &#x21d2; <tt><span class='object_link'><a href="" title="Ruff::Handler (class)">Handler</a></span>&lt;A!{<span class='object_link'><a href="Effect.html" title="Ruff::Effect (class)">Effect</a></span>&lt;Arg, Ret&gt;, e}, B!{e}&gt;</tt> 
   
@@ -384,14 +436,14 @@ to go back to the handled computation.</p>
       <pre class="lines">
 
 
+77
 78
 79
 80
-81
-82</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_eff'>eff</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
   <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
@@ -475,7 +527,8 @@ to go back to the handled computation.</p>
       
       
         &mdash;
-        <div class='inline'><p>a value modified by value handler <code>Proc&lt;A, B&gt;</code> , or returned from the effect handler throwing continuation away</p>
+        <div class='inline'><p>a value modified by value handler <code>Proc&lt;A, B&gt;</code> ,
+or returned from the effect handler throwing continuation away</p>
 </div>
       
     </li>
@@ -488,113 +541,19 @@ to go back to the handled computation.</p>
       <pre class="lines">
 
 
+106
 107
 108
 109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158</pre>
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_co'>co</span> <span class='op'>=</span> <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span>
-  <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id identifier rubyid_rehandles'>rehandles</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_co'>co</span> <span class='op'>=</span> <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_handle'>handle</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
-    <span class='kw'>case</span> <span class='id identifier rubyid_r'>r</span>
-    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_effh'>effh</span> <span class='op'>=</span> <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_effh'>effh</span><span class='lbracket'>[</span><span class='id identifier rubyid_continue'>continue</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span>
-      <span class='kw'>else</span>
-        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_continue'>continue</span><span class='rparen'>)</span>
-      <span class='kw'>end</span>
-    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span> <span class='kw'>then</span>
-      <span class='id identifier rubyid_eff'>eff</span> <span class='op'>=</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_eff'>eff</span>
-      <span class='id identifier rubyid_next_k'>next_k</span> <span class='op'>=</span> <span class='id identifier rubyid_rehandles'>rehandles</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
-
-      <span class='kw'>if</span> <span class='id identifier rubyid_effh'>effh</span> <span class='op'>=</span> <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_effh'>effh</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_next_k'>next_k</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-      <span class='kw'>else</span>
-        <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='const'><span class='object_link'><a href="Throws/Resend.html" title="Ruff::Throws::Resend (class)">Resend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Resend.html#initialize-instance_method" title="Ruff::Throws::Resend#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_eff'>eff</span><span class='comma'>,</span> <span class='id identifier rubyid_next_k'>next_k</span><span class='rparen'>)</span>
-      <span class='kw'>end</span>
-    <span class='kw'>else</span>
-      <span class='ivar'>@valh</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-  <span class='rbrace'>}</span>
-
-  <span class='id identifier rubyid_rehandles'>rehandles</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
-    <span class='id identifier rubyid_newh'>newh</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='kw'>def</span> <span class='id identifier rubyid_newh'>newh</span><span class='period'>.</span><span class='id identifier rubyid_add_handler'>add_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
-      <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_h'>h</span>
-    <span class='kw'>end</span>
-
-    <span class='ivar'>@handlers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='op'>|</span>
-      <span class='id identifier rubyid_newh'>newh</span><span class='period'>.</span><span class='id identifier rubyid_add_handler'>add_handler</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span>
-    <span class='kw'>end</span>
-
-    <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_newh'>newh</span>
-      <span class='kw'>undef</span> <span class='id identifier rubyid_add_handler'>add_handler</span>
-    <span class='kw'>end</span>
-
-    <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
-      <span class='id identifier rubyid_continue'>continue</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_newh'>newh</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
-    <span class='rbrace'>}</span>
-  <span class='rbrace'>}</span>
-
-  <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
-    <span class='id identifier rubyid_handle'>handle</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_co'>co</span><span class='period'>.</span><span class='id identifier rubyid_resume'>resume</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='rbrace'>}</span>
-
-  <span class='id identifier rubyid_continue'>continue</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_continue'>continue</span><span class='lparen'>(</span><span class='id identifier rubyid_co'>co</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -617,7 +576,8 @@ to go back to the handled computation.</p>
 <p>Value handler is the handler for <em>the result value of the computation</em>.
 For example, <code>Handler.new.to{|_x| 0}.run { value }</code> results in <code>0</code> .</p>
 
-<p>The value handler modifies the result of the call of continuation in effect handlers of the handler.</p>
+<p>The value handler modifies the result of the call of continuation
+in effect handlers of the handler.</p>
 
 
   </div>
@@ -691,14 +651,14 @@ For example, <code>Handler.new.to{|_x| 0}.run { value }</code> results in <code>
       <pre class="lines">
 
 
+55
 56
 57
 58
-59
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
   <span class='ivar'>@valh</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
@@ -715,7 +675,7 @@ For example, <code>Handler.new.to{|_x| 0}.run { value }</code> results in <code>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 05:05:04 2019 by
+  Generated on Fri Oct  4 13:57:07 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

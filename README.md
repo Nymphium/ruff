@@ -77,20 +77,9 @@ Defer.with {
 # 11!
 ```
 
-## `Ruff::Standard::State`
-### `with_init`
-<!-- This method handles state-like effects like `with` , but it requires initial state. -->
-<!-- `with { task }` is short hand for `with_init(0) { task }` . -->
-
-### `get`
-### `put`
-### `modify`
-
-## `Ruff::Standard::Defer`
-### `register`
-
-## `Ruff::Standard::CurrentTime`
-### `get`
+- `Ruff::Standard::State`
+- `Ruff::Standard::Defer`
+- `Ruff::Standard::CurrentTime`
 
 # LICENSE
 MIT

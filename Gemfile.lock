@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruff (1.0.0)
+    ruff (1.0.1)
 
 GEM
   remote: https://rubygems.org/

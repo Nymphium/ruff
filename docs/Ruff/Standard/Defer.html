@@ -6,7 +6,7 @@
 <title>
   Module: Ruff::Standard::Defer
   
-    &mdash; Ruff 1.0.0 Documentation
+    &mdash; Ruff 1.0.1 Documentation
   
 </title>
 
@@ -83,7 +83,27 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p><code>Defer</code> provides effects <code>Defer.eff</code> ,
+and the implementation to defer procedures .</p>
+
+<p>The module has an instance of <code>Instance</code> and provides its methods as module method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Defer/Instance.html" title="Ruff::Standard::Defer::Instance (class)">Instance</a></span></li>
+    
+  </ul>
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -96,6 +116,38 @@
 
 
 
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eff-instance_method" title="#eff (instance method)">#<strong>eff</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+  </ul>
 
 
 
@@ -156,6 +208,59 @@
   
 
 
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="eff-instance_method">
+  
+    #<strong>eff</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Defer/Instance.html#eff-instance_method" title="Ruff::Standard::Defer::Instance#eff (method)">Ruff::Standard::Defer::Instance#eff</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eff'>eff</span>
+  <span class='ivar'>@eff</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -170,21 +275,37 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Defer/Instance.html#register-instance_method" title="Ruff::Standard::Defer::Instance#register (method)">Ruff::Standard::Defer::Instance#register</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
-  <span class='ivar'>@inst</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span> <span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span>
+  <span class='ivar'>@inst</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -200,21 +321,37 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Defer/Instance.html#with-instance_method" title="Ruff::Standard::Defer::Instance#with (method)">Ruff::Standard::Defer::Instance#with</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-35
-36
-37</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/defer.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
-  <span class='ivar'>@inst</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span> <span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span>
+  <span class='ivar'>@inst</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -226,7 +363,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 05:05:04 2019 by
+  Generated on Fri Oct  4 13:57:07 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

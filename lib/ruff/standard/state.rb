@@ -1,65 +1,120 @@
 # frozen_string_literal: true
 
+require 'ostruct'
+
+# `State` provides effects `State.get` and `State.modify` ,
+# and the implementation of the mutable cell or so-called *state* .
+#
+# The module has an instance of `Instance` and provides its methods as module method.
+# @see Standard::State::Instance
 module Ruff::Standard::State
   class Instance
+    # makes new instances.
     def initialize
-      @get = Ruff.instance
-      @modify = Ruff.instance
+      get = Ruff.instance
+      modify = Ruff.instance
+
+      # delegates effect instances
+      @eff = OpenStruct.new(get: get, modify: modify)
     end
 
+    # is a smart method to invoke the effect operation `State.get` .
+    # @return [S]
+    #   with `with` , returns `S` , the current state.
     def get
-      @get.perform
+      @eff.get.perform
     end
 
+    # is a smart hetmod to invoke the effect operation `State.modify` .
+    # @param [Proc<S, U>] fn
+    #   is the function to modify the state `S` to `U` .
+    #   This function has an argument receiving the state.
+    # @return [()]
     def modify(&fn)
-      @modify.perform fn
+      @eff.modify.perform fn
     end
 
+    # is a short hand for `modify {|_| s }`
+    # @param [S] s
+    #   is the new state.
+    # @return [()]
     def put(s)
-      @modify.perform ->(_) { s }
+      @eff.modify.perform ->(_) { s }
     end
 
-    def with_init(init, &task)
+    # is a handler to interpret the effect invocations like *state monad* .
+    #
+    # @param [S] init
+    #   is the initial state.
+    # @param [Proc<(), A!{State.get, State.modify,, e}>] th
+    #  is a thunk returning `A` with the possibility to invoke effects,
+    #  including `State.get` and `State.modify` .
+    # @return [A!{e}]
+    #   returns `A` , without modification by value handler.
+    #   But it still has the possibility to invoke effects(`e`).
+    def with_init(init, &th)
+      # not a parameter passing style, or so-called *pure* implementation,
+      # just using mutable assignment
       state = init
 
       Ruff.handler
-          .on(@modify) do |k, fn|
+          .on(@eff.modify) do |k, fn|
         state = fn[state]
         k[nil]
-      end
-          .on(@get) do |k|
+      end.on(@eff.get) do |k|
         k[state]
       end
-          .run &task
+          .run(&th)
     end
 
-    def with(&task)
-      with_init(nil, &task)
+    # is a short hand for `with_init(nil, th)` .
+    #
+    # @param [Proc<(), A!{State.get, State.modify,, e}>] th
+    #  is a thunk returning `A` with the possibility to invoke effects,
+    #  including `State.get` and `State.modify` .
+    # @return [A!{e}]
+    #   returns `A` , without modification by value handler.
+    #   But it still has the possibility to invoke effects(`e`).
+    def with(&th)
+      with_init(nil, &th)
     end
+
+    # You can reimplement the handler using these effect instances
+    # with accessing `#eff.get` and `#eff.modify` .
+    attr_reader :eff
   end
 
   # ---
   @inst = Instance.new
+  @eff = @inst.eff
 
+  # @see Ruff::Standard::State::Instance#get
   def get
     @inst.get
   end
 
+  # @see Ruff::Standard::State::Instance#modify
   def modify(&fn)
-    @inst.modify &fn
+    @inst.modify(&fn)
   end
 
+  # @see Ruff::Standard::State::Instance#put
   def put(s)
     @inst.put s
   end
 
+  # @see Ruff::Standard::State::Instance#with_init
   def with_init(init, &task)
     @inst.with_init init, &task
   end
 
+  # @see Ruff::Standard::State::Instance#with
   def with(&task)
-    @inst.with &task
+    @inst.with(&task)
   end
 
   module_function :get, :put, :modify, :with, :with_init
+
+  # @see Ruff::Standard::Instance#eff
+  attr_reader :eff
 end

@@ -14,7 +14,8 @@ class Ruff::Throws::Eff
 
   # creates a new object with `id` and `args`.
   def initialize(id, args)
-    @id = id; @args = args
+    @id = id
+    @args = args
   end
 end
 
@@ -30,6 +31,7 @@ class Ruff::Throws::Resend
 
   # creates a new object with `eff` and `k`.
   def initialize(eff, k)
-    @eff = eff; @k = k
+    @eff = eff
+    @k = k
   end
 end

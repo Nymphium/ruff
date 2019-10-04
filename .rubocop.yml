@@ -1,1 +1,18 @@
-# inherit_from: .rubocop_todo.yml
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 40
+
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 1
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+

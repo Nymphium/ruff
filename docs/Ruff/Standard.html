@@ -6,7 +6,7 @@
 <title>
   Module: Ruff::Standard
   
-    &mdash; Ruff 1.0.0 Documentation
+    &mdash; Ruff 1.0.1 Documentation
   
 </title>
 
@@ -83,7 +83,37 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p><code>Ruff::Standard</code> provides several pre-defined effect handlers modules.
+Each module provides <code>Instance</code> class to instantiate and handle the indivisual effect instances.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'>Standard</span>
+
+<span class='id identifier rubyid_state1'>state1</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Standard/State.html" title="Ruff::Standard::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Standard/State/Instance.html" title="Ruff::Standard::State::Instance (class)">Instance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Standard/State/Instance.html#initialize-instance_method" title="Ruff::Standard::State::Instance#initialize (method)">new</a></span></span>
+<span class='id identifier rubyid_state2'>state2</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Standard/State.html" title="Ruff::Standard::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Standard/State/Instance.html" title="Ruff::Standard::State::Instance (class)">Instance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Standard/State/Instance.html#initialize-instance_method" title="Ruff::Standard::State::Instance#initialize (method)">new</a></span></span>
+
+<span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+<span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+  <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>+</span> <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='comment'>#==&gt; 3
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='comment'>#==&gt; 7
+</span><span class='rbrace'>}</span><span class='rbrace'>}</span></code></pre>
+    
+  </div>
+
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -105,7 +135,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  3 05:05:04 2019 by
+  Generated on Fri Oct  4 13:57:07 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>
