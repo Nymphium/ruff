@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'securerandom'
-
 # In algebraic effects, handler is an first-class object.
 class Ruff::Handler
   include Ruff::Throws

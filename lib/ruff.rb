@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'ruff/version'
-require 'ruff/objects'
-require 'ruff/effect'
-require 'ruff/handler'
-require 'securerandom'
-
 module Ruff
   class << self
+    require 'ruff/version'
+    require 'ruff/objects'
+    require 'ruff/effect'
+    require 'ruff/handler'
+    require 'securerandom'
+
     # is alias for `Effect.new`
     # @see Effect.initialize Effect.initialize
     #

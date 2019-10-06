@@ -6,7 +6,7 @@
 <title>
   Class: Ruff::Handler
   
-    &mdash; Ruff 1.1.0 Documentation
+    &mdash; Ruff 1.3.0 Documentation
   
 </title>
 
@@ -294,13 +294,13 @@ Value handler is set <code>id</code> function to by default.</p>
       <pre class="lines">
 
 
+14
+15
 16
-17
-18
-19</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -343,12 +343,12 @@ Value handler is set <code>id</code> function to by default.</p>
       <pre class="lines">
 
 
-113
-114
-115</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handlers='>handlers=</span><span class='lparen'>(</span><span class='id identifier rubyid_handlers'>handlers</span><span class='rparen'>)</span>
   <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='id identifier rubyid_handlers'>handlers</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -447,14 +447,14 @@ to go back to the handled computation.</p>
       <pre class="lines">
 
 
+75
+76
 77
 78
-79
-80
-81</pre>
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_eff'>eff</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
   <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
@@ -552,14 +552,14 @@ or returned from the effect handler throwing continuation away</p>
       <pre class="lines">
 
 
+104
+105
 106
 107
-108
-109
-110</pre>
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_co'>co</span> <span class='op'>=</span> <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
@@ -662,14 +662,14 @@ in effect handlers of the handler.</p>
       <pre class="lines">
 
 
+53
+54
 55
 56
-57
-58
-59</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
   <span class='ivar'>@valh</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
@@ -686,7 +686,7 @@ in effect handlers of the handler.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Oct  4 21:12:21 2019 by
+  Generated on Sun Oct  6 23:09:11 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.5).
 </div>

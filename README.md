@@ -80,6 +80,8 @@ Defer.with {
 - `Ruff::Standard::State`
 - `Ruff::Standard::Defer`
 - `Ruff::Standard::CurrentTime`
+- `Ruff::Standard::MeasureTime`
+- `Ruff::Standard::Async`
 
 # LICENSE
 MIT

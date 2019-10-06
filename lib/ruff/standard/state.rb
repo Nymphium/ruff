@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ostruct'
-
 # `State` provides effects `State.get` and `State.modify` ,
 # and the implementation of the mutable cell or so-called *state* .
 #
@@ -16,22 +14,24 @@ require 'ostruct'
 #       puts s #==> 30
 #       0
 #     }
-#  
+#
 #     puts State.get #==> 0
-#  
+#
 #     State.put 11
 #   }
-#  
+#
 #   puts r #==> 11
 module Ruff::Standard::State
   class Instance
+    require 'ostruct'
+
     # makes new instances.
     def initialize
-      get = Ruff.instance
-      modify = Ruff.instance
-
-      # delegates effect instances
-      @eff = OpenStruct.new(get: get, modify: modify)
+      # delegates effect instances.
+      @eff = OpenStruct.new(
+        get: Ruff.instance,
+        modify: Ruff.instance
+      )
     end
 
     # is a smart method to invoke the effect operation `State.get` .
@@ -105,33 +105,33 @@ module Ruff::Standard::State
   @inst = Instance.new
   @eff = @inst.eff
 
-  # @see Ruff::Standard::State::Instance#get
+  # @see Instance#get
   def get
     @inst.get
   end
 
-  # @see Ruff::Standard::State::Instance#modify
+  # @see Instance#modify
   def modify(&fn)
     @inst.modify(&fn)
   end
 
-  # @see Ruff::Standard::State::Instance#put
+  # @see Instance#put
   def put(s)
     @inst.put s
   end
 
-  # @see Ruff::Standard::State::Instance#with_init
+  # @see Instance#with_init
   def with_init(init, &task)
     @inst.with_init init, &task
   end
 
-  # @see Ruff::Standard::State::Instance#with
+  # @see Instance#with
   def with(&task)
     @inst.with(&task)
   end
 
   module_function :get, :put, :modify, :with, :with_init
 
-  # @see Ruff::Standard::Instance#eff
+  # @see Instance#eff
   attr_reader :eff
 end
