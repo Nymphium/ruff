@@ -154,5 +154,5 @@ class Ruff::Handler
     }
   end
 
-  private_methods :handlers=
+  private :handlers=
 end
