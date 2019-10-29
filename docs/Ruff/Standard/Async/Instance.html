@@ -100,6 +100,42 @@
 </div>
 
 
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="Waiting-constant" class="">Waiting =
+          <div class="docstring">
+  <div class="discussion">
+    <p>are ADT-like classes which have only getter method.
+These are used internally.</p>
+
+<p>type &#39;a promise =
+  | Waiting of (&#39;a, unit) continuation list
+  | Done of &#39;a</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Util</span><span class='op'>::</span><span class='const'>ADT</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span></pre></dd>
+      
+        <dt id="Done-constant" class="">Done =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Util</span><span class='op'>::</span><span class='const'>ADT</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -295,7 +331,6 @@
       <pre class="lines">
 
 
-54
 55
 56
 57
@@ -305,10 +340,11 @@
 61
 62
 63
-64</pre>
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='comment'># delegates effect instances.
@@ -359,12 +395,12 @@ with accessing <code>Async.async</code> , <code>Async.yield</code> , and <code>A
       <pre class="lines">
 
 
-103
 104
-105</pre>
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eff'>eff</span>
   <span class='ivar'>@eff</span>
@@ -442,12 +478,12 @@ with accessing <code>Async.async</code> , <code>Async.yield</code> , and <code>A
       <pre class="lines">
 
 
-71
 72
-73</pre>
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_async'>async</span><span class='lparen'>(</span><span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_async'>async</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='id identifier rubyid_th'>th</span>
@@ -518,12 +554,12 @@ with accessing <code>Async.async</code> , <code>Async.yield</code> , and <code>A
       <pre class="lines">
 
 
-87
 88
-89</pre>
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_await'>await</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_await'>await</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='id identifier rubyid_p'>p</span>
@@ -595,15 +631,15 @@ including <code>Async.async</code> , <code>Async.yield</code> and <code>Async.aw
       <pre class="lines">
 
 
-97
 98
-99</pre>
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 98</span>
 
 <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:with</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>&amp;</span><span class='id identifier rubyid_th'>th</span><span class='op'>|</span>
-  <span class='id identifier rubyid_fork'>fork</span><span class='lparen'>(</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Ref</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid__Waiting'>_Waiting</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fork'>fork</span><span class='lparen'>(</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Ref</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#Waiting-constant" title="Ruff::Standard::Async::Instance::Waiting (constant)">Waiting</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Ruff::Standard::Async::Instance#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_th'>th</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -652,12 +688,12 @@ including <code>Async.async</code> , <code>Async.yield</code> and <code>Async.aw
       <pre class="lines">
 
 
-78
 79
-80</pre>
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/standard/async.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>yield</span>
   <span class='ivar'>@eff</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
@@ -672,7 +708,7 @@ including <code>Async.async</code> , <code>Async.yield</code> and <code>Async.aw
 </div>
 
       <div id="footer">
-  Generated on Mon Oct  7 02:33:40 2019 by
+  Generated on Wed Oct 30 01:51:52 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.5).
 </div>

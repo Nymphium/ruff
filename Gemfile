@@ -8,3 +8,5 @@ gem 'redcarpet', group: :development
 gem 'rubocop', group: :development
 gem 'solargraph', group: :development
 gem 'yard', group: :development
+
+gem "irb", "~> 1.0"

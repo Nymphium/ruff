@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# `Async` provides effects `Async.async`, `Async.yield` and `Async.await`, and the implementation async/await.
+# `Async` provides effects `Async.async`, `Async.yield` and `Async.await`,
+# and the implementation async/await.
 # This implementation is based on the tutorial for Multicore OCaml.
 # @see https://github.com/ocamllabs/ocaml-effects-tutorial/blob/master/sources/solved/async_await.ml
 #
@@ -47,8 +48,8 @@ module Ruff::Standard::Async
     # type 'a promise =
     #   | Waiting of ('a, unit) continuation list
     #   | Done of 'a
-    _Waiting = Util::ADT.create
-    _Done = Util::ADT.create
+    Waiting = Util::ADT.create
+    Done = Util::ADT.create
 
     # makes a new instance.
     def initialize
@@ -95,7 +96,7 @@ module Ruff::Standard::Async
     # @return [()!{e}]
     #   returns unit but still has the possibility to invoke effects `e` .
     define_method :with do |&th|
-      fork(Util::Ref.new(_Waiting.new([])), th)
+      fork(Util::Ref.new(Waiting.new([])), th)
     end
 
     # You can reimplement the handler using these effect instances
@@ -104,26 +105,26 @@ module Ruff::Standard::Async
 
     private
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/BlockLength
     define_method :fork do |pr, th|
       Ruff.handler
           .to do |v|
         pp = pr.get
         l = case pp
-            when _Waiting
-              pp.get
-            else
-              raise 'impossible'
+            when Waiting then pp.get
+            else raise 'impossible'
             end
 
         l.each do |k|
           @q.enqueue(-> { k[v] })
         end
 
-        pr.set(_Done.new(v))
+        pr.set(Done.new(v))
         @q.dequeue
       end
           .on(@eff.async) do |k, f|
-        pr_ = Util::Ref.new(_Waiting.new([]))
+        pr_ = Util::Ref.new(Waiting.new([]))
         @q.enqueue(-> { k[pr_] })
         fork(pr_, f)
       end
@@ -131,19 +132,20 @@ module Ruff::Standard::Async
         @q.enqueue(-> { k[] })
         @q.dequeue.call
       end
-          .on(@eff.await) do |k, pr|
-        pp = pr.get
+          .on(@eff.await) do |k, ppr|
+        pp = ppr.get
 
         return case pp
-               when _Done
-                 k[pp.get]
-               when _Waiting
-                 pr.set(_Waiting.new(@q.cons(k)))
+               when Done then k[pp.get]
+               when Waiting
+                 pr.set(Waiting.new(@q.cons(k)))
                  @q.dequeue.call
                end
       end
           .run { th[] }
     end
+    # rubocop:enable Metrics/BlockLength
+    # rubocop:enable Metrics/AbcSize
   end
 
   # ---
