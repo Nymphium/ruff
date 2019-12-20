@@ -13,8 +13,8 @@ module Ruff
     #
     # @example
     #   Log = Ruff.instance #==> Ruff::Effect.new
-    def instance
-      Effect.new
+    def instance(parent = nil)
+      Effect.new(parent)
     end
 
     # is alias for `Handler.new`

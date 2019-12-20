@@ -9,9 +9,12 @@ class Ruff::Effect
   # @return [Effect<Arg, Ret>]
   # @example
   #   Log = Effect.new #==> it _might_ be Effect<string, nil>
-  def initialize
-    @id = SecureRandom.uuid
-    @id.freeze
+  def initialize(parent = nil)
+    @id = if parent
+            (Class.new parent.id.class).new
+          else
+            Class.new.new
+          end
   end
 
   # sends an effect ID and its arguments to a nearmost handler.

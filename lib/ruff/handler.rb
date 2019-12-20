@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ruff/handler_store'
+
 # In algebraic effects, handler is an first-class object.
 class Ruff::Handler
   include Ruff::Throws
@@ -7,12 +9,12 @@ class Ruff::Handler
   # makes a new handler, internally having fresh empty hash.
   #
   # This is a effect-handler store and when handliong it is looked up.
-  # Value handler is set `id` function to by default.
+  # Value handler is set an identity function to by default.
   #
   # @example
   #   handler = Handler.new
   def initialize
-    @handlers = {}
+    @handlers = Ruff::HandlerStore.new
     @valh = ->(x) { x }
   end
 
@@ -73,7 +75,7 @@ class Ruff::Handler
   #     k[]
   #   }
   def on(eff, &fun)
-    @handlers[eff.id] = fun
+    @handlers[eff] = fun
 
     self
   end
@@ -107,12 +109,12 @@ class Ruff::Handler
     continue(co).call(nil)
   end
 
-  # is also private method.
+  protected
+
+  # receives `handlers` as new handlers.
   def handlers=(handlers)
     @handlers = handlers.dup
   end
-
-  private
 
   def continue(co)
     ->(*arg) { handle(co, co.resume(*arg)) }
@@ -122,7 +124,7 @@ class Ruff::Handler
   def handle(co, r)
     case r
     when Eff
-      if (effh = @handlers[r.id])
+      if (effh = @handlers[r])
         effh[continue(co), *r.args]
       else
         Fiber.yield Resend.new(r, continue(co))
@@ -131,7 +133,7 @@ class Ruff::Handler
       eff = r.eff
       next_k = rehandles(co, r.k)
 
-      if (effh = @handlers[eff.id])
+      if (effh = @handlers[eff])
         effh.call(next_k, *eff.args)
       else
         Fiber.yield Resend.new(eff, next_k)
@@ -153,6 +155,4 @@ class Ruff::Handler
         .run { k.call(*args) }
     }
   end
-
-  private :handlers=
 end
