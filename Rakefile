@@ -10,7 +10,8 @@ YARDOPTS = [
   "--title=Ruff #{Ruff::VERSION} Documentation",
   '--markup-provider=redcarpet',
   '--markup=markdown',
-  '--charset=utf-8'
+  '--charset=utf-8',
+  '--no-private'
 ].freeze
 
 RuboCop::RakeTask.new

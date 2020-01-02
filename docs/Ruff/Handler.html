@@ -6,15 +6,15 @@
 <title>
   Class: Ruff::Handler
   
-    &mdash; Ruff 1.3.1 Documentation
+    &mdash; Ruff 1.4.0 Documentation
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "Ruff::Handler";
   relpath = '../';
 </script>
@@ -87,11 +87,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></dd>
-  </dl>
-  
   
 
   
@@ -148,7 +143,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>makes a new handler, internally having fresh empty hash.</p>
+    <span class="summary_desc"><div class='inline'><p>A new instance of Handler.</p>
 </div></span>
   
 </li>
@@ -171,7 +166,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>sets effec handler <code>&amp;fun</code> for <code>eff</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>sets or updates effec handler <code>&amp;fun</code> for <code>eff</code>.</p>
 </div></span>
   
 </li>
@@ -226,13 +221,7 @@
     </ul>
   
 
-
-  
-  
-  
-  
-  
-  <div id="constructor_details" class="method_details_list">
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
@@ -246,10 +235,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>makes a new handler, internally having fresh empty hash.</p>
-
-<p>This is a effect-handler store and when handliong it is looked up.
-Value handler is set <code>id</code> function to by default.</p>
+    <p>Returns a new instance of Handler.</p>
 
 
   </div>
@@ -271,16 +257,16 @@ Value handler is set <code>id</code> function to by default.</p>
       <pre class="lines">
 
 
-14
-15
-16
-17</pre>
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
-  <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@handlers</span> <span class='op'>=</span> <span class='const'>Store</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@valh</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_x'>x</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -306,7 +292,9 @@ Value handler is set <code>id</code> function to by default.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>sets effec handler <code>&amp;fun</code> for <code>eff</code></p>
+    <p>sets or updates effec handler <code>&amp;fun</code> for <code>eff</code></p>
+
+<p>Note that <code>eff</code> can be a supertype of an effect to be caught.</p>
 
 
   </div>
@@ -378,23 +366,30 @@ to go back to the handled computation.</p>
   
 </ul>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Effect.html#<<-instance_method" title="Ruff::Effect#&lt;&lt; (method)">Effect#&lt;&lt;</a></span></li>
+    
+  </ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-75
-76
-77
-78
-79</pre>
+102
+103
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_eff'>eff</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
-  <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_eff'>eff</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
+  <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_eff'>eff</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
 
   <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
@@ -489,14 +484,14 @@ or returned from the effect handler throwing continuation away</p>
       <pre class="lines">
 
 
-104
-105
-106
-107
-108</pre>
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 131</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_co'>co</span> <span class='op'>=</span> <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prc'>prc</span><span class='rparen'>)</span>
@@ -599,14 +594,14 @@ in effect handlers of the handler.</p>
       <pre class="lines">
 
 
-53
-54
-55
-56
-57</pre>
+77
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/handler.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_fun'>fun</span><span class='rparen'>)</span>
   <span class='ivar'>@valh</span> <span class='op'>=</span> <span class='id identifier rubyid_fun'>fun</span>
@@ -623,9 +618,9 @@ in effect handlers of the handler.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Oct 30 01:51:52 2019 by
+  Generated on Thu Jan  2 19:02:17 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.6.5).
+  0.9.22 (ruby-2.6.5).
 </div>
 
     </div>

@@ -6,7 +6,8 @@ source 'https://rubygems.org'
 gemspec
 gem 'redcarpet', group: :development
 gem 'rubocop', group: :development
+# gem 'irb', group: :development
 gem 'solargraph', group: :development
 gem 'yard', group: :development
 
-gem "irb", "~> 1.0"
+gem 'irb', '~> 1.0', group: :development

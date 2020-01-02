@@ -6,15 +6,15 @@
 <title>
   Class: Ruff::Effect
   
-    &mdash; Ruff 1.3.1 Documentation
+    &mdash; Ruff 1.4.0 Documentation
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "Ruff::Effect";
   relpath = '../';
 </script>
@@ -138,7 +138,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Each instance must be unique so they have unique id with UUID.</p>
+    <span class="summary_desc"><div class='inline'><p>Each instance must be unique so they have unique id with an annonymous class instance.</p>
 </div></span>
   
 </li>
@@ -156,6 +156,29 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#<<-instance_method" title="#&lt;&lt; (instance method)">#<strong>&lt;&lt;</strong>(parent)  &#x21d2; Effect&lt;Arg, Ret&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>instanciates an effect, which has an relation <code>self &lt;: parent</code> from the subtyping of <code>id</code> object.</p>
+</div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -244,17 +267,15 @@
       <pre class="lines">
 
 
-12
-13
-14
-15</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
-  <span class='ivar'>@id</span> <span class='op'>=</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_uuid'>uuid</span>
-  <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='ivar'>@id</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -267,11 +288,11 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id=""></span>
+      <span id="id=-instance_method"></span>
       <div class="method_details first">
   <h3 class="signature first" id="id-instance_method">
   
-    #<strong>id</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>id</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -279,7 +300,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Each instance must be unique so they have unique id with UUID</p>
+    <p>Each instance must be unique so they have unique id with an annonymous class instance.</p>
+
+<p>The class instance may have subtyping relation.</p>
 
 
   </div>
@@ -287,18 +310,25 @@
 <div class="tags">
   
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#<<-instance_method" title="Ruff::Effect#&lt;&lt; (method)">#&lt;&lt;</a></span></li>
+    
+  </ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-6
-7
-8</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -316,7 +346,102 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="perform-instance_method">
+  <h3 class="signature first" id="<<-instance_method">
+  
+    #<strong>&lt;&lt;</strong>(parent)  &#x21d2; <tt><span class='object_link'><a href="" title="Ruff::Effect (class)">Effect</a></span>&lt;Arg, Ret&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>instanciates an effect, which has an relation <code>self &lt;: parent</code>
+from the subtyping of <code>id</code> object.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='const'>Exception</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Ruff::Effect (class)">Effect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Ruff::Effect#initialize (method)">new</a></span></span>
+<span class='const'>RuntimeException</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Ruff::Effect (class)">Effect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Ruff::Effect#initialize (method)">new</a></span></span> <span class='op'>&lt;&lt;</span> <span class='const'>Exception</span>
+
+<span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Handler.html" title="Ruff::Handler (class)">Handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Handler.html#initialize-instance_method" title="Ruff::Handler#initialize (method)">new</a></span></span>
+  <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Exception</span><span class='rparen'>)</span><span class='lbrace'>{</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>catch</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbrace'>}</span>
+  <span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='lbrace'>{</span>
+    <span class='const'>RuntimeException</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span>
+  <span class='rbrace'>}</span>
+<span class='comment'># ==&gt; prints &quot;catch&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>parent</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Ruff::Effect (class)">Effect</a></span>&lt;Arg, Ret&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Ruff::Effect (class)">Effect</a></span>&lt;Arg, Ret&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>with an relation <code>it &lt;: parent</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_inst'>inst</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_inst'>inst</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_inst'>inst</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="perform-instance_method">
   
     #<strong>perform</strong>(*a)  &#x21d2; <tt>Ret</tt> 
   
@@ -384,12 +509,12 @@
       <pre class="lines">
 
 
-22
-23
-24</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/ruff/effect.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform'>perform</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
   <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_yield'>yield</span> <span class='const'><span class='object_link'><a href="../Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws.html" title="Ruff::Throws (module)">Throws</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Throws/Eff.html" title="Ruff::Throws::Eff (class)">Eff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Throws/Eff.html#initialize-instance_method" title="Ruff::Throws::Eff#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@id</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
@@ -404,9 +529,9 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Oct 30 01:51:52 2019 by
+  Generated on Thu Jan  2 19:02:17 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.6.5).
+  0.9.22 (ruby-2.6.5).
 </div>
 
     </div>
