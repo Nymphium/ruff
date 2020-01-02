@@ -41,6 +41,11 @@ Even the limitation exists, you can write powerful control flow manipulation, li
 We have an formal definition for the implementation, by showing a conversion from algebraic effects and handlers to asymmetric coroutines.
 See [here](https://nymphium.github.io/2018/12/09/asymmetric-coroutines%E3%81%AB%E3%82%88%E3%82%8Boneshot-algebraic-effects%E3%81%AE%E5%AE%9F%E8%A3%85.html) (in Japanese).
 
+## Subtyping on effects
+You can define an *sub* effect for another effect.
+It enables to make an effect hierarchy, such as `Exception`s in Java.
+This implementation is based on a calculus [$\lambda_{\sigma_{<:}}$](https://nymphium.github.io/2019/12/22/effsub.html).
+
 # Pre-defined effect and handlers
 We provide some ready-to-use effect and handlers.
 You can use quickly powerful control flows.
