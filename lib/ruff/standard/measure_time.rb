@@ -22,13 +22,13 @@ module Ruff::Standard::MeasureTime
     def initialize
       @eff = Ruff.instance
       @handler = Ruff.handler
-          .on(@eff) do |k, label|
+      @handler.on(@eff) do |k, label|
         t1 = Time.now
         result = k[]
         t2 = Time.now
         result + [{ label: label, time: t2 - t1 }]
       end
-          .to { |x| [x] }
+      @handler.to { |x| [x] }
     end
 
     # is a smart method to invoke the effect operation.

@@ -30,7 +30,7 @@ module Ruff::Standard::CurrentTime
     #   returns `A` , without modification by value handler.
     #   But it still has the possibility to invoke effects(`e`).
     def with(&th)
-        @handler.run(&th)
+      @handler.run(&th)
     end
 
     # You can reimplement the handler using this effect instance.

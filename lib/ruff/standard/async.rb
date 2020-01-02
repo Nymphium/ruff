@@ -89,7 +89,7 @@ module Ruff::Standard::Async
       @eff.await.perform p
     end
 
-    # @method with
+    # @method with(&th)
     # @param [Proc<(), _A!{Async.async, Async.yield, Async.await, e}>] th
     #   is a thunk returning `_A` with te possibility to invoke effects,
     #   including `Async.async` , `Async.yield` and `Async.await` .
@@ -108,8 +108,8 @@ module Ruff::Standard::Async
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/BlockLength
     define_method :fork do |pr, th|
-      Ruff.handler
-          .to do |v|
+      h = Ruff::Handler.new
+      h.to do |v|
         pp = pr.get
         l = case pp
             when Waiting then pp.get
@@ -123,16 +123,18 @@ module Ruff::Standard::Async
         pr.set(Done.new(v))
         @q.dequeue
       end
-          .on(@eff.async) do |k, f|
+
+      h.on(@eff.async) do |k, f|
         pr_ = Util::Ref.new(Waiting.new([]))
         @q.enqueue(-> { k[pr_] })
         fork(pr_, f)
       end
-          .on(@eff.yield) do |k|
+      h.on(@eff.yield) do |k|
         @q.enqueue(-> { k[] })
         @q.dequeue.call
       end
-          .on(@eff.await) do |k, ppr|
+
+      h.on(@eff.await) do |k, ppr|
         pp = ppr.get
 
         return case pp
@@ -142,7 +144,8 @@ module Ruff::Standard::Async
                  @q.dequeue.call
                end
       end
-          .run { th[] }
+
+      h.run { th[] }
     end
     # rubocop:enable Metrics/BlockLength
     # rubocop:enable Metrics/AbcSize

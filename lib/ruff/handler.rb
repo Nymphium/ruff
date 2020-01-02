@@ -1,20 +1,42 @@
 # frozen_string_literal: true
 
-require 'ruff/handler_store'
-
 # In algebraic effects, handler is an first-class object.
 class Ruff::Handler
-  include Ruff::Throws
-
   # makes a new handler, internally having fresh empty hash.
   #
   # This is a effect-handler store and when handliong it is looked up.
   # Value handler is set an identity function to by default.
-  #
+
+  class Store
+    # is a private class to manage registered handlers
+    def initialize
+      @handler = {}
+    end
+
+    def []=(r, e)
+      @handler[r.id] = e
+    end
+
+    def [](eff)
+      # get a set {(eff', f) | forall (eff', f) in store. eff <: eff'}
+      fns = @handler.filter do |effky, _fun|
+        eff.id.is_a? effky.class
+      end
+
+      # pick a function with *smallest* effect class
+      return fns.min_by { |effky, _| effky.class }[1] unless fns.empty?
+
+      # if found nothing
+      nil
+    end
+  end
+
+  private_constant :Store
+
   # @example
   #   handler = Handler.new
   def initialize
-    @handlers = Ruff::HandlerStore.new
+    @handlers = Store.new
     @valh = ->(x) { x }
   end
 
@@ -58,7 +80,10 @@ class Ruff::Handler
     self
   end
 
-  # sets effec handler `&fun` for `eff`
+  # sets or updates effec handler `&fun` for `eff`
+  #
+  # Note that `eff` can be a supertype of an effect to be caught.
+  # @see Effect.<<
   #
   # @param [Effect<Arg, Ret>] eff
   #   the effect instance to be handled
@@ -123,20 +148,20 @@ class Ruff::Handler
   # rubocop:disable Metrics/AbcSize
   def handle(co, r)
     case r
-    when Eff
+    when Ruff::Throws::Eff
       if (effh = @handlers[r])
         effh[continue(co), *r.args]
       else
-        Fiber.yield Resend.new(r, continue(co))
+        Fiber.yield Ruff::Throws::Resend.new(r, continue(co))
       end
-    when Resend then
+    when Ruff::Throws::Resend then
       eff = r.eff
       next_k = rehandles(co, r.k)
 
       if (effh = @handlers[eff])
         effh.call(next_k, *eff.args)
       else
-        Fiber.yield Resend.new(eff, next_k)
+        Fiber.yield Ruff::Throws::Resend.new(eff, next_k)
       end
     else
       @valh.call(r)
