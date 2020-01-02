@@ -3,6 +3,9 @@ ruff
 
 [![Gem Version](https://badge.fury.io/rb/ruff.svg)](https://badge.fury.io/rb/ruff)
 
+- [source](https://github.com/Nymphium/ruff)
+- [documentation](https://nymphium.github.io/ruff)
+
 ONE-SHOT Algebraic Effects Library for Ruby!
 
 ```ruby
@@ -44,7 +47,7 @@ See [here](https://nymphium.github.io/2018/12/09/asymmetric-coroutines%E3%81%AB%
 ## Subtyping on effects
 You can define an *sub* effect for another effect.
 It enables to make an effect hierarchy, such as `Exception`s in Java.
-This implementation is based on a calculus [$\lambda_{\sigma_{<:}}$](https://nymphium.github.io/2019/12/22/effsub.html).
+This implementation is based on a calculus λ<sub>σ<sub>&lt;:</sub></sub> [(Description (in Japanese))](https://nymphium.github.io/2019/12/22/effsub.html).
 
 # Pre-defined effect and handlers
 We provide some ready-to-use effect and handlers.

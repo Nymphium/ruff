@@ -24,7 +24,7 @@ class Ruff::Effect
   #
   # @example
   #   Exception = Ruff::Effect.new
-  #   RuntimeException = Ruff::Effect.new << Exception
+  #   RuntimeException = Ruff::Effect << Exception
   #
   #   Ruff::Handler.new
   #     .on(Exception){

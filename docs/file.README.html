@@ -61,28 +61,33 @@
 
 <p><a href="https://badge.fury.io/rb/ruff"><img src="https://badge.fury.io/rb/ruff.svg" alt="Gem Version"></a></p>
 
+<ul>
+<li><a href="https://github.com/Nymphium/ruff">source</a></li>
+<li><a href="https://nymphium.github.io/ruff">documentation</a></li>
+</ul>
+
 <p>ONE-SHOT Algebraic Effects Library for Ruby!</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruff</span><span class='tstring_end'>&quot;</span></span>
 
-<span class='id identifier rubyid_double'>double</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
-<span class='id identifier rubyid_triple'>triple</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
-<span class='id identifier rubyid_log'>log</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
+<span class='const'>Double</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
+<span class='const'>Triple</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
+<span class='const'>Log</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="Ruff.html#instance-class_method" title="Ruff.instance (method)">instance</a></span></span>
 
 <span class='id identifier rubyid_h1'>h1</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span>
-  <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_double'>double</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span> <span class='op'>*</span> <span class='int'>2</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
-  <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_triple'>triple</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span> <span class='op'>*</span> <span class='int'>3</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Double</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span> <span class='op'>*</span> <span class='int'>2</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Triple</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span> <span class='op'>*</span> <span class='int'>3</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
 
-<span class='id identifier rubyid_h2'>h2</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_log'>log</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='op'>|</span>
+<span class='id identifier rubyid_h2'>h2</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handler'><span class='object_link'><a href="Ruff.html#handler-class_method" title="Ruff.handler (method)">handler</a></span></span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='const'>Log</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='op'>|</span>
   <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>logger: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='rbrace'>}</span>
 
 <span class='id identifier rubyid_h1'>h1</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lbrace'>{</span>
   <span class='id identifier rubyid_h2'>h2</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lbrace'>{</span>
-    <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_double'>double</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='int'>2</span>
-    <span class='id identifier rubyid_log'>log</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span> <span class='op'>+</span> <span class='int'>2</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_triple'>triple</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='int'>3</span>
+    <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='const'>Double</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='int'>2</span>
+    <span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span> <span class='op'>+</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='const'>Triple</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span> <span class='int'>3</span>
   <span class='rbrace'>}</span>
 <span class='rbrace'>}</span>
 <span class='comment'># ==&gt; prints
@@ -90,56 +95,34 @@
 </span><span class='comment'># logger: 6
 </span></code></pre>
 
-<h1>pre-defined effect and handlers</h1>
+<h1>Feature</h1>
 
-<p>They have <code>with</code> method to handle the effects, and <code>Instance</code> class to instanciate and handle the indivisual effect objects.</p>
+<h2><strong><em>One-shot</em></strong> algebraic effects</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruff</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruff/standard</span><span class='tstring_end'>&quot;</span></span>
+<p>You can access the delimited continuation which can run only once.
+Even the limitation exists, you can write powerful control flow manipulation, like async/await, call1cc.</p>
 
-<span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="Ruff.html" title="Ruff (module)">Ruff</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Ruff/Standard.html" title="Ruff::Standard (module)">Standard</a></span></span>
+<p>We have an formal definition for the implementation, by showing a conversion from algebraic effects and handlers to asymmetric coroutines.
+See <a href="https://nymphium.github.io/2018/12/09/asymmetric-coroutines%E3%81%AB%E3%82%88%E3%82%8Boneshot-algebraic-effects%E3%81%AE%E5%AE%9F%E8%A3%85.html">here</a> (in Japanese).</p>
 
-<span class='const'>Defer</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span> <span class='lbrace'>{</span>
-  <span class='id identifier rubyid_state1'>state1</span> <span class='op'>=</span> <span class='const'>State</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_state2'>state2</span> <span class='op'>=</span> <span class='const'>State</span><span class='op'>::</span><span class='const'>Instance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<h2>Subtyping on effects</h2>
 
-  <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='int'>10</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
-    <span class='const'>CurrentTime</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span> <span class='lbrace'>{</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='const'>CurrentTime</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
-    <span class='rbrace'>}</span>
+<p>You can define an <em>sub</em> effect for another effect.
+It enables to make an effect hierarchy, such as <code>Exception</code>s in Java.
+This implementation is based on a calculus λ<sub>σ<sub>&lt;:</sub></sub> <a href="https://nymphium.github.io/2019/12/22/effsub.html">(Description (in Japanese))</a>.</p>
 
-    <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_with_init'>with_init</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span>
-      <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span><span class='lbrace'>{</span>
-        <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>+</span> <span class='int'>1</span> <span class='rbrace'>}</span>
-        <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span>
+<h1>Pre-defined effect and handlers</h1>
 
-        <span class='id identifier rubyid_s1'>s1</span> <span class='op'>=</span> <span class='id identifier rubyid_state1'>state1</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
-        <span class='id identifier rubyid_s2'>s2</span> <span class='op'>=</span> <span class='id identifier rubyid_state2'>state2</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span>
-
-        <span class='const'>Defer</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span> <span class='lbrace'>{</span>
-          <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_s1'>s1</span><span class='comma'>,</span> <span class='id identifier rubyid_s2'>s2</span>
-        <span class='rbrace'>}</span>
-      <span class='rbrace'>}</span>
-    <span class='rbrace'>}</span>
-  <span class='rbrace'>}</span>
-<span class='rbrace'>}</span>
-
-<span class='comment'># ==&gt;
-</span><span class='comment'># 2019-10-03 03:24:34 +0900
-</span><span class='comment'># 13
-</span><span class='comment'># 13!
-</span><span class='comment'># 12
-</span><span class='comment'># 12!
-</span><span class='comment'># 11
-</span><span class='comment'># 11!
-</span></code></pre>
+<p>We provide some ready-to-use effect and handlers.
+You can use quickly powerful control flows.</p>
 
 <ul>
-<li><code>Ruff::Standard::State</code></li>
-<li><code>Ruff::Standard::Defer</code></li>
-<li><code>Ruff::Standard::CurrentTime</code></li>
-<li><code>Ruff::Standard::MeasureTime</code></li>
-<li><code>Ruff::Standard::Async</code></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/State.html"><code>Ruff::Standard::State</code></a></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/Defer.html"><code>Ruff::Standard::Defer</code></a></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/CurrentTime.html"><code>Ruff::Standard::CurrentTime</code></a></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/MeasureTime.html"><code>Ruff::Standard::MeasureTime</code></a></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/Async.html"><code>Ruff::Standard::Async</code></a></li>
+<li><a href="https://nymphium.github.io/ruff/Ruff/Standard/Call1cc.html"><code>Ruff::Standard::Call1cc</code></a></li>
 </ul>
 
 <h1>LICENSE</h1>
@@ -148,7 +131,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jan  2 19:02:17 2020 by
+  Generated on Thu Jan  2 19:46:22 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.22 (ruby-2.6.5).
 </div>
