@@ -20,7 +20,7 @@ GEM
     parser (2.7.0.1)
       ast (~> 2.4.0)
     rainbow (3.0.0)
-    rake (10.5.0)
+    rake (13.0.1)
     redcarpet (3.5.0)
     reline (0.1.2)
       io-console (~> 0.5)
@@ -57,7 +57,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   irb (~> 1.0)
-  rake (~> 10.0)
+  rake (~> 13.0)
   redcarpet
   rubocop
   ruff!
