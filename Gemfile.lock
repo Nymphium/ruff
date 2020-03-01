@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruff (2.0.0)
+    ruff (2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -65,4 +65,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
