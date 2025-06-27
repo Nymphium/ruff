@@ -57,3 +57,4 @@ Gemfile.lock
 .rvmrc
 
 # End of https://www.gitignore.io/api/ruby
+/.direnv
