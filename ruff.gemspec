@@ -28,10 +28,12 @@ Gem::Specification.new do |spec|
   }
 
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'redcarpet'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'rubocop-rake'
   spec.add_development_dependency 'rubocop-rspec'
   spec.add_development_dependency 'ruby-lsp'
   spec.add_development_dependency 'yard'
-  spec.add_development_dependency 'redcarpet'
 end
