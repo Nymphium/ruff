@@ -1,5 +1,13 @@
-Metrics/LineLength:
-  Max: 100
+plugins:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 120
 
 Metrics/MethodLength:
   Max: 40
@@ -16,3 +24,15 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false

@@ -54,10 +54,10 @@ module Ruff::Standard::Async
     # makes a new instance.
     def initialize
       # delegates effect instances.
-      @eff = OpenStruct.new(
-        async: Ruff.instance,
-        yield: Ruff.instance,
-        await: Ruff.instance
+      @eff = Struct.new(:async, :yield, :await).new(
+        Ruff.instance,
+        Ruff.instance,
+        Ruff.instance
       )
 
       # is a proc queue.

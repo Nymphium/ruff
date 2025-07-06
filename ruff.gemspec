@@ -7,12 +7,12 @@ require 'ruff/version'
 Gem::Specification.new do |spec|
   spec.name          = 'ruff'
   spec.version       = Ruff::VERSION
-  spec.authors       = ['nymphium']
+  spec.authors       = ['Nymphium']
   spec.email         = ['s1311350@gmail.com']
 
   spec.summary       = 'ONE-SHOT Algebraic Effects for Ruby!'
   spec.description   = 'ONE-SHOT Algebraic Effects for Ruby!'
-  spec.homepage      = 'https://github.com/nymphium/ruff'
+  spec.homepage      = 'https://github.com/Nymphium/ruff'
   spec.license       = 'MIT'
 
   spec.files         = Dir.chdir(File.expand_path(__dir__)) do
@@ -20,10 +20,20 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 2.0'
-  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.required_ruby_version = '>= 2.7.0' # Assuming Ruby 2.7 or higher
 
   spec.metadata = {
-    'documentation_uri' => 'https://nymphium.github.io/ruff'
+    'documentation_uri' => 'https://nymphium.github.io/ruff',
+    'rubygems_mfa_required' => 'true'
   }
+
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'redcarpet'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'rubocop-rake'
+  spec.add_development_dependency 'rubocop-rspec'
+  spec.add_development_dependency 'ruby-lsp'
+  spec.add_development_dependency 'yard'
 end

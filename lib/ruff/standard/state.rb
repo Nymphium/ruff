@@ -23,14 +23,12 @@
 #   puts r #==> 11
 module Ruff::Standard::State
   class Instance
-    require 'ostruct'
-
     # makes new instances.
     def initialize
       # delegates effect instances.
-      @eff = OpenStruct.new(
-        get: Ruff.instance,
-        modify: Ruff.instance
+      @eff = Struct.new(:get, :modify).new(
+        Ruff.instance,
+        Ruff.instance
       )
     end
 

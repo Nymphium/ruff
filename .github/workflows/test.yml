@@ -1,0 +1,25 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@v3
+        with:
+          extra-conf: |
+            cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@v12
+      - uses: nicknovitski/nix-develop@v1
+      - run: |
+          rake rubocop
+          rake spec
+          actionlint

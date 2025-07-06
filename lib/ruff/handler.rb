@@ -154,7 +154,7 @@ class Ruff::Handler
       else
         Fiber.yield Ruff::Throws::Resend.new(r, continue(co))
       end
-    when Ruff::Throws::Resend then
+    when Ruff::Throws::Resend
       eff = r.eff
       next_k = rehandles(co, r.k)
 

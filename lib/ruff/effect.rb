@@ -36,8 +36,8 @@ class Ruff::Effect
   #   # ==> prints "catch"
   def self.<<(parent)
     inst = new
-    parent_id = parent.instance_variable_get('@id')
-    inst.instance_variable_set('@id', (Class.new parent_id.class).new)
+    parent_id = parent.instance_variable_get(:@id)
+    inst.instance_variable_set(:@id, (Class.new parent_id.class).new)
     inst
   end
 
