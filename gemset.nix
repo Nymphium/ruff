@@ -271,6 +271,32 @@
     targets = [];
     version = "1.45.1";
   };
+  rubocop-performance = {
+    dependencies = ["lint_roller" "rubocop" "rubocop-ast"];
+    groups = ["development"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1h9flnqk2f3llwf8g0mk0fvzzznfj7hsil3qg88m803pi9b06zbg";
+      target = "ruby";
+      type = "gem";
+    };
+    targets = [];
+    version = "1.25.0";
+  };
+  rubocop-rake = {
+    dependencies = ["lint_roller" "rubocop"];
+    groups = ["development"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0kdfrckz1v32dy7c7bdiksjysx9l9zsda9kc6zvrsghch6vg55rp";
+      target = "ruby";
+      type = "gem";
+    };
+    targets = [];
+    version = "0.7.1";
+  };
   rubocop-rspec = {
     dependencies = ["lint_roller" "rubocop"];
     groups = ["development"];

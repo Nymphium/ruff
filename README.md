@@ -61,4 +61,4 @@ You can use quickly powerful control flows.
 - [`Ruff::Standard::Call1cc`](https://nymphium.github.io/ruff/Ruff/Standard/Call1cc.html)
 
 # LICENSE
-MIT
+[MIT](/LICENSE)
