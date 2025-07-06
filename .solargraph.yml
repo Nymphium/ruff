@@ -12,7 +12,7 @@ exclude:
 require: []
 domains: []
 reporters:
-  - standardrb
-- require_not_found
+  - rubocop
+  - require_not_found
 require_paths: []
 max_files: 5000

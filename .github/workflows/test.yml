@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v18
+      - uses: DeterminateSystems/determinate-nix-action@v3
         with:
           extra-conf: |
             cores = 0
