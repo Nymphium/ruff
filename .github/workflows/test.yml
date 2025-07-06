@@ -12,10 +12,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: DeterminateSystems/nix-installer-action@v4
-      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v18
+        with:
+          extra-conf: |
+            cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@v12
       - uses: nicknovitski/nix-develop@v1
       - run: |
           rake rubocop
           rake spec
+          actionlint
