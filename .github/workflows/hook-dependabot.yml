@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: ${{ env.head_ref }}
-      - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/nix-installer-action@v21
         with:
           extra-conf: |
             cores = 0
