@@ -17,7 +17,7 @@ jobs:
     env:
       head_ref: ${{ github.event.pull_request.head.ref }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ env.head_ref }}
       - uses: DeterminateSystems/nix-installer-action@v19
