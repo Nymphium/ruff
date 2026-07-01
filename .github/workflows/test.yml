@@ -17,7 +17,7 @@ jobs:
         with:
           extra-conf: |
             cores = 0
-      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
       - uses: nicknovitski/nix-develop@v1
       - run: |
           rake rubocop
